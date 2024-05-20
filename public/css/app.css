@@ -4,8 +4,39 @@
     align-items: center;
     min-height: 100vh;
 }
-form{
+.form{
     border: 1px solid grey;
     border-radius: 15px;
     padding: 15px;
+}
+table{
+    font-size: 14px;
+}
+table th{
+    text-align: center;
+}
+.document_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar-top{
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+.app-wrapper{
+    margin-top: 60px;
+}
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.navbar-bottom{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

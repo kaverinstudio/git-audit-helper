@@ -8,16 +8,21 @@
             </a>
             @if($auditNumbers)
                 @foreach($auditNumbers as $auditNumber)
-                    <a href="#" class="list-group-item list-group-item-action">{{ $auditNumber['number'] }} от {{ $auditNumber['date'] }}</a>
+                    <a href="{{ route('audits.year.contractor.audit', ['year' => $year, 'contractor' => $auditNumber['user_id'], 'audit' => $auditNumber['id']]) }}" class="list-group-item list-group-item-action">{{ $auditNumber['number'] }} от {{ $auditNumber['date'] }}</a>
                 @endforeach
             @endif
-            <ul class="nav nav-pills mt-2">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('audits.year', ['year' => $year]) }}">Вернуться назад</a>
-                </li>
-                </li>
-            </ul>
         </div>
+    </div>
+    <div class="bottom-panel">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-bottom">
+            <div class="container">
+                @if($isSubContractor)
+                    <a class="btn btn-outline-secondary btn-sm" aria-current="page" href="{{ route('audits') }}">Вернуться назад</a>
+                @else
+                    <a class="btn btn-outline-secondary btn-sm" aria-current="page" href="{{ route('audits.year', ['year' => $year]) }}">Вернуться назад</a>
+                @endif
+            </div>
+        </nav>
     </div>
 @endsection
 

@@ -4,11 +4,13 @@
     <div class="container-form">
         <form action="{{ route('login') }}" class="form" method="POST">
             @csrf
-            <select class="form-select" name="email" aria-label="Пример выбора по умолчанию">
-                <option selected>Откройте это меню выбора</option>
-                <option value="test@test.com">ASE</option>
-                <option value="2">Два</option>
-                <option value="3">Три</option>
+            <select class="form-select" name="email" aria-label="Выберите пользователя">
+                <option selected>Выберите пользователя</option>
+                @if($users)
+                    @foreach($users as $user)
+                <option value="{{ $user['email'] }}">{{ $user['name'] }}</option>
+                    @endforeach
+                @endif
             </select>
             <div class="mb-3">
                 @error('error')

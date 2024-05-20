@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Audit;
 use App\Models\AuditData;
-use App\Models\AuditInfo;
 use Illuminate\Http\Request;
-use PHPExcel;
 
 class AuditLoadController extends Controller
 {
