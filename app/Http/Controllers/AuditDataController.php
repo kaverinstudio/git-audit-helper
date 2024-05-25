@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Audit;
 use App\Models\AuditData;
 use App\Models\Year;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class AuditDataController extends Controller
@@ -44,6 +45,33 @@ class AuditDataController extends Controller
 
         $auditData = AuditData::query()->where('audit_id', $auditId->id)->get();
 
-        return view('audits.data', compact('auditData'));
+        return view('audits.data', compact('auditData', 'year', 'contractor'));
+    }
+
+    public function save(Request $request){
+        $uri = $_SERVER["REQUEST_URI"];
+
+        $uriArray = explode('/', $uri);
+        $year = $uriArray[2];
+        $contractor = $uriArray[3];
+        $auditId = $uriArray[4];
+
+        $text = $request->input('commentForm');
+        $id = $request->input('id');
+        $rowId = $request->input('row-id');
+
+        $audit_data = AuditData::query()->where('id', $id)->first();
+
+        if ($rowId == 'respondent_comments'){
+            $audit_data->respondent_comments = $text;
+        }elseif ($rowId == 'auditor_comments'){
+            $audit_data->auditor_comments = $text;
+        }
+
+        $audit_data->save();
+
+        $auditData = AuditData::query()->where('audit_id', $auditId)->get();
+
+        return view('audits.data', compact('auditData', 'year', 'contractor'));
     }
 }

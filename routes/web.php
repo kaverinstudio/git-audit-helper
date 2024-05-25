@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/audits/{year}/{contractor}', [AuditsController::class, 'contractor'])->name('audits.year.contractor');
 
     Route::get('/audits/{year}/{contractor}/{audit}', [AuditDataController::class, 'index'])->name('audits.year.contractor.audit');
+    Route::post('/audits/{year}/{contractor}/{audit}', [AuditDataController::class, 'save'])->name('audits.data.save');
 });
 
 Route::group(['prefix' => 'admin'], function () {

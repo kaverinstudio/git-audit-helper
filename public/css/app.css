@@ -40,3 +40,12 @@ body{
     bottom: 0;
     width: 100%;
 }
+.document_wrapper label{
+    cursor: pointer;
+}
+.document_wrapper input{
+    display: none;
+}
+.modal-open{
+    cursor: pointer;
+}
