@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuditDataController;
+use App\Http\Controllers\AuditDocumentController;
 use App\Http\Controllers\AuditLoadController;
 use App\Http\Controllers\AuditsController;
 use App\Http\Controllers\HomeController;
@@ -42,6 +43,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/audits/{year}/{contractor}/{audit}', [AuditDataController::class, 'index'])->name('audits.year.contractor.audit');
     Route::post('/audits/{year}/{contractor}/{audit}', [AuditDataController::class, 'save'])->name('audits.data.save');
+
+    Route::post('{audit}', [AuditDataController::class, 'document_save'])->name('document.save');
 });
 
 Route::group(['prefix' => 'admin'], function () {
